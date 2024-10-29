@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Hero Section with Floating Corner Images</title>
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            background-color: #000;
+            overflow: hidden;
+        }
+
+       
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+            z-index: 100;
+        }
+
+        .logo-animation {
+            display: flex;
+            gap: 0.2rem;
+            font-size: 4rem;
+            color: white;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .logo-animation span {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: revealLetter 0.5s ease forwards;
+        }
+
+        .logo-animation span:nth-child(1) { animation-delay: 0s; }
+        .logo-animation span:nth-child(2) { animation-delay: 0.3s; }
+        .logo-animation span:nth-child(3) { animation-delay: 0.6s; }
+        .logo-animation span:nth-child(4) { animation-delay: 0.9s; }
+        .logo-animation span:nth-child(5) { animation-delay: 1.2s; }
+
+        #main-content {
+            display: none;
+            position: relative;
+            z-index: 3;
+        }
+
+        
+        .navbar {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar .logo {
+            height: 40px;
+            cursor: pointer;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            color: #ccc;
+        }
+
+        
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 3;
+        }
+
+        .content h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.2;
+            text-transform: uppercase;
+            color: white;
+            letter-spacing: -2px;
+            opacity: 0;
+            animation: fadeInText 2s ease forwards;
+            animation-delay: 2s;
+        }
+
+       
+        .corner-image {
+            position: absolute;
+            width: 14vw;
+            height: 14vw;
+            overflow: hidden;
+            opacity: 0.3;
+            padding: 5px;
+            animation: floatAnimation 6s ease-in-out infinite;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .corner-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        
+        .corner-image.top-left { 
+            top: 18%;
+            left: 18%; 
+            animation-delay: 0s;
+        }
+
+        .corner-image.top-right { 
+            top: 18%;
+            right: 18%; 
+            animation-delay: 1.5s;
+        }
+
+        .corner-image.bottom-left { 
+            bottom: 18%; 
+            left: 18%; 
+            animation-delay: 3s;
+        }
+
+        .corner-image.bottom-right { 
+            bottom: 18%; 
+            right: 18%; 
+            animation-delay: 4.5s;
+        }
+
+        .corner-image:hover {
+            transform: scale(1.5); 
+            opacity: 0.9; 
+        }
+
+        
+        @keyframes floatAnimation {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(0, -10px); } 
+        }
+
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes revealLetter {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div id="preloader">
+        <div class="logo-animation">
+            <span>P</span><span>H</span><span>A</span><span>5</span><span>E</span>
+        </div>
+    </div>
+
+    
+    <div id="main-content">
+        <nav class="navbar">
+            <img src="image/logo.png" alt="Logo" class="logo">
+            <ul>
+                <li><a href="#vision">Our Vision</a></li>
+                <li><a href="#team">Our Team</a></li>
+                <li><a href="#projects">Our Projects</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+
+        <section class="hero">
+            <div class="content">
+                <h1>IMAGINING <br> UNIQUE CONCEPTS <br> AND DIGITAL EXPERIENCES</h1>
+            </div>
+        </section>
+
+       
+        <div class="corner-image top-left">
+            <img src="image/one.jpeg" alt="Top Left Image">
+        </div>
+        <div class="corner-image top-right">
+            <img src="image/two.jpeg" alt="Top Right Image">
+        </div>
+        <div class="corner-image bottom-left">
+            <img src="image/three.jpeg" alt="Bottom Left Image">
+        </div>
+        <div class="corner-image bottom-right">
+            <img src="image/four.jpeg" alt="Bottom Right Image">
+        </div>
+    </div>
+
+
+    <script>
+        
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('preloader').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            }, 2000);
+        });
+
+        
+        const cornerImages = document.querySelectorAll('.corner-image');
+
+        cornerImages.forEach(image => {
+            image.addEventListener('mouseenter', () => {
+                const moveImage = (e) => {
+                    const { clientX, clientY } = e;
+                    const offsetX = (image.offsetWidth / 2);
+                    const offsetY = (image.offsetHeight / 2);
+                    image.style.transform = `translate(${clientX - offsetX}px, ${clientY - offsetY}px)`;
+                };
+
+                document.addEventListener('mousemove', moveImage);
+
+                
+                image.addEventListener('mouseleave', () => {
+                    document.removeEventListener('mousemove', moveImage);
+                    image.style.transform = ''; 
+                }, { once: true }); 
+            });
+        });
+    </script>
+
+</body>
+</html>
